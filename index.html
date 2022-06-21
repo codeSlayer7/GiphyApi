@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- <div id='display'></div> -->
+
+    <form style="display:flex; flex-direction:column; align-items: center; padding: 60px;">
+
+        <input class="search__input" type="search">
+        <button class="search__btn" type="submit"> Поиск</button>
+
+    </form>
+
+    <div class="container" style="display:flex; flex-direction:column-reverse; align-items: center;"> </div>
+
+    <script>
+
+        const api_key = '1tE1Dl0mJvSQjmS6LBFC1Yic4FheYO9R';
+       
+
+        document.querySelector('.search__btn').addEventListener('click', e=>{
+            e.preventDefault();
+            let search = document.querySelector('.search__input').value.trim();
+            let url = `https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${search}&limit=3&offset=0&rating=g&lang=en`
+             
+            console.log(url);
+           
+
+            fetch(url)
+            .then(res => res.json())
+            .then(content =>{
+             
+                
+                        console.log(content.data[0])
+
+
+                 for (let i = 0; i < content.data.length; i++) {
+                    let urlGiph = content.data[i].images.fixed_width.url;
+                    console.log(urlGiph)
+                    let img = document.createElement('img')
+                    img.style.width= '700px';
+                    img.style.height= '700px';
+                    img.style.padding= '50px'
+
+                     img.src = urlGiph
+
+                     let container = document.querySelector('.container'); 
+
+
+                     container.appendChild(img)
+                
+                     document.querySelector('.search__input').value = '';
+
+               }
+
+            })
+        })
+    
+
+        // async function fetchAPI(url) {
+        //     let response = await fetch(url)
+        //     .then(res => res.json())
+        //     .then(data =>{
+        //         console.log(data)
+        //     })
+        //     console.log(JSON.stringify(response))
+        // }
+
+
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // fetch('https://jsonplaceholder.typicode.com/posts')
+        // .then(res => res.json())
+       
+        // .then(data=> { console.log(data[4].title)
+        //     for (let i = 0; i < data.length; i++) {
+        //         document.querySelector('#display').innerHTML += `<li> ${data[i].title} </li> `;     
+        //     }
+        //     })
+        
+
+
+
+
+
+        
+
+
+
+    </script>
+</body>
+</html>
