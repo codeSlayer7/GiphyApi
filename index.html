@@ -4,20 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
     <title>Document</title>
 </head>
-<body>
-    
+<body style="background-image:url(./Japanese-Flag-Lines.svg); background-repeat: no-repeat; background-size: cover;">
+
+
     <!-- <div id='display'></div> -->
+<header>
+    <form style="display:flex;padding: 60px; justify-content: center;">
 
-    <form style="display:flex; flex-direction:column; align-items: center; padding: 60px;">
-
-        <input class="search__input" type="search">
-        <button class="search__btn" type="submit"> Поиск</button>
+        <input class="search__input" type="search" style=" width: 200px; height: 30px; background-color:white; 
+        border:none; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 10px;">
+        <button class="search__btn" type="submit" style=" border-radius:10px; border:none; height: 30px;
+         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; margin-left: 20px;"
+        > Search</button>
 
     </form>
+</header>
 
-    <div class="container" style="display:flex; flex-direction:column-reverse; align-items: center;"> </div>
+    <div class="container" style="display:flex;  flex-wrap: wrap-reverse; justify-content: center;"> </div>
 
     <script>
 
@@ -27,8 +34,9 @@
         document.querySelector('.search__btn').addEventListener('click', e=>{
             e.preventDefault();
             let search = document.querySelector('.search__input').value.trim();
-            let url = `https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${search}&limit=3&offset=0&rating=g&lang=en`
-             
+            let url = `https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${search}&limit=10&offset=0&rating=g&lang=en`
+            
+ 
             console.log(url);
            
 
@@ -44,8 +52,8 @@
                     let urlGiph = content.data[i].images.fixed_width.url;
                     console.log(urlGiph)
                     let img = document.createElement('img')
-                    img.style.width= '700px';
-                    img.style.height= '700px';
+                    img.style.width= '400px';
+                    img.style.height= '400px';
                     img.style.padding= '50px'
 
                      img.src = urlGiph
@@ -103,6 +111,8 @@
         
 
 
+
+            
 
 
 
